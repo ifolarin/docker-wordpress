@@ -13,7 +13,7 @@ services:
       WORDPRESS_TABLE_PREFIX: wp_
       WORDPRESS_DB_HOST: mysql_${HOST_NAME}:3306
       VIRTUAL_HOST: ${DOMAIN_NAME},www.${DOMAIN_NAME}
-      VIRTAUL_PROTO: https
+#      VIRTAUL_PROTO: https
       LETSENCRYPT_HOST: ${DOMAIN_NAME},www.${DOMAIN_NAME} 
       LETSENCRYPT_EMAIL: ${ADMIN_EMAIL}
     volumes: 

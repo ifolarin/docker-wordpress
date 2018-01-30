@@ -14,4 +14,4 @@ docker-compose run --rm wp plugin update --all
 # set your theme choice on this line
 #docker-compose run --rm wp theme install https://downloads.wordpress.org/theme/best-reloaded.0.14.0.zip --activate
 docker-compose run --rm wp media regenerate --yes
-docker-compose run --rm wp rewrite structure '/%year%/%monthnum%/%postname%' --hard
+#docker-compose run --rm wp rewrite structure '/%year%/%monthnum%/%postname%' --hard
