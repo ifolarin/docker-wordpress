@@ -16,3 +16,11 @@ cp frontend/proxy /srv/proxy
 cd /srv/proxy 
 
 docker-compose up -d
+
+cd -
+
+cp frontend/db /srv/db
+cd /srv/db
+mkdir backup
+
+cd -

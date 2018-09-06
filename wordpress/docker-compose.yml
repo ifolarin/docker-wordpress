@@ -13,7 +13,6 @@ services:
       WORDPRESS_TABLE_PREFIX: wp_
       WORDPRESS_DB_HOST: mysql_${HOST_NAME}:3306
       VIRTUAL_HOST: ${DOMAIN_NAME},www.${DOMAIN_NAME}
-#      VIRTAUL_PROTO: https
       LETSENCRYPT_HOST: ${DOMAIN_NAME},www.${DOMAIN_NAME} 
       LETSENCRYPT_EMAIL: ${ADMIN_EMAIL}
     volumes: 
@@ -21,18 +20,9 @@ services:
       - ./home/wp:/home/wp
     links:
       - mysql:mysql_${HOST_NAME}
-
-  mysql:
-    image: mariadb
-    environment: 
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-      MYSQL_DATABASE: ${MYSQL_DATABASE} 
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./home/db:/home/db
+    networks:
+      - proxy-net
+      - db-net
 
   wp:
     image: pattonwebz/docker-wpcli
@@ -44,11 +34,12 @@ services:
     command: "--info"
 
 volumes:
-    db_data: 
     data_volume:
 
 networks:
   default:
     external:
-      name: nginx-proxy
+      name: proxy-net
+    external:
+      name: db-net
     
